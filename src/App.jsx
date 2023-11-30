@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import styles from "./styles/login.module.css";
+import { Form, Button, Input } from "antd";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={styles.container}>
+      <h2 className={styles.title}> Forkify </h2>
+      <Form>
+        {/* account input */}
+        <Form.Item
+          label="账号"
+          name="name"
+          rules={[{ required: true, message: "Please enter your username" }]}
+        >
+          <Input placeholder="Please enter username"></Input>
+        </Form.Item>
+
+        {/* password input */}
+        <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: "Please enter your password" }]}
+        >
+          <Input.Password placeholder="Please enter password"></Input.Password>
+        </Form.Item>
+
+        {/* login button */}
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            size="large"
+            className={styles.btn}
+          >
+            Login
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
+  );
 }
 
-export default App
+export default App;
