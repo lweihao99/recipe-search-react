@@ -1,10 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import styles from "../styles/login.module.css";
 import { Form, Button, Input } from "antd";
 
 function Login() {
-  const handleLogin = () => {
-    console.log("login");
+  const handleLogin = (values) => {
+    console.log("login", values);
   };
 
   return (

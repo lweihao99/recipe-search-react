@@ -1,10 +1,13 @@
+// eslint-disable-next-line no-unused-vars
 import Login from "./components/login";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
-    <>
-      <Login></Login>
-    </>
+    // <>
+    //   {/* <Login></Login> */}
+    // </>
+    <HomePage></HomePage>
   );
 }
 
