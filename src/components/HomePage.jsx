@@ -16,6 +16,7 @@ import {
   Space,
   Image,
   Pagination,
+  message,
 } from "antd";
 import styles from "../styles/layout.module.css";
 import Content from "./Content";

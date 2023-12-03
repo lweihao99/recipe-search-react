@@ -7,9 +7,15 @@ const fetchData = async () => {
   const { recipe } = data.data;
   return recipe;
 };
+
+// 根据词条搜索
 const search = async (query) => {
-  const data = await AJAX(`${API_URL}?search=${query}`);
-  return data;
+  try {
+    const data = await AJAX(`${API_URL}?search=${query}`);
+    return data;
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 export { fetchData, search };

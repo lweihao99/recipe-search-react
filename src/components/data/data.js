@@ -1,4 +1,5 @@
 import { fetchData, search } from "../Search";
+import { message } from "antd";
 
 const state = {
   recipe: {},
@@ -32,18 +33,26 @@ const getRecipe = async () => {
 
 const searchRecipe = async (query) => {
   const data = await search(query);
-  const { recipes } = data.data;
 
-  state.search.results = data.data.recipes.map((rec) => {
-    return {
-      id: rec.id,
-      title: rec.title,
-      publisher: rec.publisher,
-      image: rec.image_url,
-    };
-  });
+  if (!data) {
+    message.error("No data found");
+    throw new Error("No data found");
+  } else {
+    const { recipes } = data.data;
 
-  return state.search.results;
+    state.search.results = data.data.recipes.map((rec) => {
+      return {
+        id: rec.id,
+        title: rec.title,
+        publisher: rec.publisher,
+        image: rec.image_url,
+      };
+    });
+
+    message.success("Search successful");
+
+    return state.search.results;
+  }
 };
 
 export { searchRecipe, createRecipeObject, getRecipe, state };
