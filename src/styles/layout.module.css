@@ -1,1 +1,25 @@
 /* content */
+.user {
+  float: right;
+  font-weight: normal;
+  font-size: 16px;
+}
+.search {
+  max-width: 300px;
+  margin: 15px;
+  margin-left: 20px;
+  float: left;
+}
+
+.header {
+  background-color: hsl(210, 36%, 96%);
+  font-size: 14px;
+  color: #4b7bd7;
+  font-weight: bold;
+  border-bottom: 1px solid #49a6e9;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  margin-right: 10px;
+}
