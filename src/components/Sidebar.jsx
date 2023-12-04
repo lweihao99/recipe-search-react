@@ -40,12 +40,14 @@ function Sidebar({ collapsed }) {
           >
             {resize ? (
               <List.Item.Meta
+                className={styles.listItemMetaShort}
                 avatar={
                   <Avatar style={{ width: 60, height: 60 }} src={item.image} />
                 }
               />
             ) : (
               <List.Item.Meta
+                className={styles.listItemMeta}
                 avatar={<Avatar src={item.image} />}
                 title={
                   <a
