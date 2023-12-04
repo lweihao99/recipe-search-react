@@ -31,7 +31,13 @@ function Sidebar({ collapsed }) {
         itemLayout="horizontal"
         dataSource={data}
         renderItem={(item, index) => (
-          <List.Item className={styles.list}>
+          <List.Item
+            className={styles.list}
+            onClick={(e) => {
+              e.preventDefault();
+              handleItemClick(item.id);
+            }}
+          >
             {resize ? (
               <List.Item.Meta
                 avatar={
@@ -44,10 +50,10 @@ function Sidebar({ collapsed }) {
                 title={
                   <a
                     href={<Link to={`/detail/${item.id}`}>{item.title}</Link>}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleItemClick(item.id);
-                    }}
+                    // onClick={(e) => {
+                    //   e.preventDefault();
+                    //   handleItemClick(item.id);
+                    // }}
                   >
                     {item.title}
                   </a>

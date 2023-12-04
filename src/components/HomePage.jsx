@@ -80,10 +80,6 @@ function HomePage() {
     setSearchValue(""); // initial value
   };
 
-  const handleCollapse = (value) => {
-    console.log("🚀 ~ file: HomePage.jsx:84 ~ handleResize ~ value:", value);
-  };
-
   return (
     <Layout>
       <Header className={styles.header}>
@@ -117,10 +113,7 @@ function HomePage() {
           style={{ backgroundColor: colorBgContainer }}
           collapsible
           collapsed={collapsed}
-          onCollapse={(value) => {
-            handleCollapse(value);
-            setCollapsed(value);
-          }}
+          onCollapse={(value) => setCollapsed(value)}
         >
           <Sidebar collapsed={collapsed}></Sidebar>
         </Sider>
