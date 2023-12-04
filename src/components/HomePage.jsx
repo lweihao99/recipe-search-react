@@ -23,6 +23,7 @@ import Content from "./Content";
 import { fetchData } from "./Search";
 import { render } from "react-dom";
 import { getRecipe, searchRecipe, state } from "./data/data";
+import Sidebar from "./Sidebar";
 
 const { Header, Content: AntdContent, Footer, Sider } = Layout;
 const { Search } = Input;
@@ -79,6 +80,10 @@ function HomePage() {
     setSearchValue(""); // initial value
   };
 
+  const handleCollapse = (value) => {
+    console.log("🚀 ~ file: HomePage.jsx:84 ~ handleResize ~ value:", value);
+  };
+
   return (
     <Layout>
       <Header className={styles.header}>
@@ -109,16 +114,15 @@ function HomePage() {
       >
         {/* sidebar */}
         <Sider
+          style={{ backgroundColor: colorBgContainer }}
           collapsible
           collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
+          onCollapse={(value) => {
+            handleCollapse(value);
+            setCollapsed(value);
+          }}
         >
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={["2"]}
-            mode="inline"
-            items={items}
-          />
+          <Sidebar collapsed={collapsed}></Sidebar>
         </Sider>
 
         {/* main */}
