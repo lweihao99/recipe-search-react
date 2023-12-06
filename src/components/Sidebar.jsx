@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/content.module.css";
+import styles from "../styles/sidebar.module.css";
 import { Avatar, List, Pagination } from "antd";
-import { state } from "./data/data";
+import { getRecipe, state } from "./data/data";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { getRecipeById } from "./Search";
 
-function Sidebar({ collapsed }) {
+function Sidebar({ collapsed, onData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
   const [resize, setResize] = useState(false);
@@ -16,9 +17,9 @@ function Sidebar({ collapsed }) {
     currentPage * pageSize
   );
 
-  // 根据id进行页面切换
-  const handleItemClick = (id) => {
-    console.log("🚀 ~ file: Content.jsx:15 ~ handleItemClick ~ id:", id);
+  // 传递id参数给父级元素
+  const handleItemClick = async (id) => {
+    onData(id);
   };
 
   useEffect(() => {

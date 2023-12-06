@@ -1,4 +1,4 @@
-import { fetchData, search } from "../Search";
+import { getRecipeById, search } from "../Search";
 import { message } from "antd";
 
 const state = {
@@ -22,13 +22,9 @@ const createRecipeObject = (recipe) => {
   };
 };
 
-const getRecipe = async () => {
-  const recipe = await fetchData();
+const getRecipe = async (id) => {
+  const recipe = await getRecipeById(id);
   state.recipe = createRecipeObject(recipe);
-  console.log(
-    "🚀 ~ file: data.js:24 ~ getRecipe ~ state.recipe:",
-    state.recipe
-  );
 };
 
 const searchRecipe = async (query) => {

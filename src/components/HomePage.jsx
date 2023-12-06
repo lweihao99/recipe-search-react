@@ -6,6 +6,7 @@ import {
   TeamOutlined,
   UserOutlined,
   DownOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import {
   Layout,
@@ -20,7 +21,7 @@ import {
 } from "antd";
 import styles from "../styles/layout.module.css";
 import Content from "./Content";
-import { fetchData } from "./Search";
+import { getRecipeById } from "./Search";
 import { render } from "react-dom";
 import { getRecipe, searchRecipe, state } from "./data/data";
 import Sidebar from "./Sidebar";
@@ -37,25 +38,7 @@ const USER_ITEMS = [
   {
     label: "Recipe Bookmark",
     key: "2",
-  },
-];
-
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-
-const items = [
-  getItem("pasta", "1"),
-  {
-    key: "3",
-    label: "pizza",
-    icon: <PieChartOutlined />,
-    children: [{ label: "pomodoro", key: "4" }],
+    icon: <FormOutlined />,
   },
 ];
 
@@ -63,7 +46,7 @@ function HomePage() {
   const [collapsed, setCollapsed] = useState(false);
   const [searchValue, setSearchValue] = useState(""); // 搜索框初始化
   // const [query, setQuery] = useState("");
-  const [renderRecipe, setRenderRecipe] = useState({});
+  const [data, setData] = useState({});
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -78,6 +61,14 @@ function HomePage() {
     await searchRecipe(query);
 
     setSearchValue(""); // initial value
+  };
+
+  const handleRecipeId = async (id) => {
+    await getRecipe(id);
+    const data = state.recipe;
+    console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
+
+    setData(data);
   };
 
   return (
@@ -115,7 +106,7 @@ function HomePage() {
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
         >
-          <Sidebar collapsed={collapsed}></Sidebar>
+          <Sidebar collapsed={collapsed} onData={handleRecipeId}></Sidebar>
         </Sider>
 
         {/* main */}
@@ -145,7 +136,7 @@ function HomePage() {
             }}
           >
             <div>
-              <h2>Recipes</h2>
+              <h2>{data.title || "Recipes"}</h2>
             </div>
             <div
               style={{
@@ -155,7 +146,7 @@ function HomePage() {
                 background: colorBgContainer,
               }}
             >
-              <Content></Content>
+              <Content data={data}></Content>
             </div>
           </AntdContent>
           <Footer

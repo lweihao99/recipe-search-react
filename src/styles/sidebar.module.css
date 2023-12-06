@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+.content {
+  max-height: 100%;
+  padding: 10px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.list {
+  box-sizing: border-box;
+  padding: 1.25rem;
+  display: grid;
+}
+
+.listItemMeta:hover {
+  border-bottom: solid 1px #6495ed;
+  /* border-top: solid 2px #6495ed; */
+  transform: translateY(-2px);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.listItemMetaShort:hover {
+  border-radius: 50%;
+  background: #6495ed;
+
+  transform: translateY(-2px);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.pagination {
+  padding: 10px;
+  text-align: center;
+  display: grid;
+  overflow: hidden;
+}
