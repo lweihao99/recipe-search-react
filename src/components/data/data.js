@@ -51,4 +51,25 @@ const searchRecipe = async (query) => {
   }
 };
 
-export { searchRecipe, createRecipeObject, getRecipe, state };
+const updateServings = function (newServings) {
+  try {
+    const updatedRecipe = { ...state.recipe };
+    if (!updatedRecipe.id) throw new Error("Something is wrong");
+
+    updatedRecipe.ingredients = updatedRecipe.ingredients.map((ing) => {
+      return {
+        ...ing,
+        quantity: (ing.quantity * newServings) / state.recipe.servings,
+      };
+    });
+
+    // update new servings number
+    updatedRecipe.servings = newServings;
+
+    return updatedRecipe;
+  } catch (error) {
+    message.error(error.message);
+  }
+};
+
+export { searchRecipe, createRecipeObject, getRecipe, state, updateServings };

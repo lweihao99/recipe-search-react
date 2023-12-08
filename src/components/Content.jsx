@@ -58,7 +58,13 @@ function Content({ data, updateServings }) {
               >
                 <PlusCircleOutlined />
               </button>
-              <button className={styles.btn_tiny}>
+              <button
+                className={styles.btn_tiny}
+                onClick={(e) => {
+                  e.preventDefault();
+                  updateServings(data.servings - 1);
+                }}
+              >
                 <MinusCircleOutlined />
               </button>
             </div>

@@ -25,6 +25,7 @@ import { getRecipeById } from "./Search";
 import { render } from "react-dom";
 import { getRecipe, searchRecipe, state } from "./data/data";
 import Sidebar from "./Sidebar";
+import { updateServings } from "./data/data";
 
 const { Header, Content: AntdContent, Footer, Sider } = Layout;
 const { Search } = Input;
@@ -71,6 +72,13 @@ function HomePage() {
     setData(data);
   };
 
+  const handleUpdateServings = (newServings) => {
+    const newRecipe = updateServings(newServings);
+    if (!newRecipe) return;
+
+    setData(newRecipe); // react特性: 如果只是对原对象进行变化不会进行检测然后重新渲染，只有赋予了新的对象才会
+  };
+
   return (
     <Layout>
       <Header className={styles.header}>
@@ -101,7 +109,10 @@ function HomePage() {
       >
         {/* sidebar */}
         <Sider
-          style={{ backgroundColor: colorBgContainer }}
+          style={{
+            backgroundColor: colorBgContainer,
+            boxShadow: " 5px 0 5px rgba(0, 0, 0, 0.1)",
+          }}
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
@@ -136,17 +147,25 @@ function HomePage() {
             }}
           >
             <div>
-              <h2>{data.title || "Recipes"}</h2>
+              <h2 style={{ color: "hsl(205, 86%, 17%)" }}>
+                {data ? data.title : "Recipes"}
+              </h2>
             </div>
             <div
               style={{
-                padding: 24,
+                padding: 0,
                 minHeight: 360,
                 height: "100%",
                 background: colorBgContainer,
               }}
             >
-              <Content data={data}></Content>
+              {data.id && (
+                <Content
+                  key={data.id}
+                  data={data}
+                  updateServings={handleUpdateServings}
+                ></Content>
+              )}
             </div>
           </AntdContent>
           <Footer
