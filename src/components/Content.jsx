@@ -12,7 +12,7 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 
-import { Image, Button, Space } from "antd";
+import { Image, Button, Space, message } from "antd";
 
 function Content({ data, updateServings }) {
   return (
@@ -64,6 +64,10 @@ function Content({ data, updateServings }) {
                 className={styles.btn_tiny}
                 onClick={(e) => {
                   e.preventDefault();
+                  if (data.servings === 1) {
+                    message.warning("You can't serving less than 1 person");
+                    return;
+                  }
                   updateServings(data.servings - 1);
                 }}
               >
