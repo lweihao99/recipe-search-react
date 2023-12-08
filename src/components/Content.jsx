@@ -19,14 +19,16 @@ function Content({ data, updateServings }) {
     <div className={styles.content}>
       {/* figure */}
       <div className={styles.imageContainer}>
-        <Image
-          style={{
-            width: 400,
-            height: 256,
-          }}
-          className={styles.figure}
-          src={data.image}
-        ></Image>
+        <div className={styles.image}>
+          <Image
+            // style={{
+            //   width: 400,
+            //   height: 256,
+            // }}
+            className={styles.figure}
+            src={data.image}
+          ></Image>
+        </div>
       </div>
 
       {/* detail */}
@@ -71,12 +73,16 @@ function Content({ data, updateServings }) {
           </div>
         </Space>
 
-        <Button className={styles.recipe_user}>
-          <UserOutlined style={{ fontSize: 30 }} />
-        </Button>
-        <Button className={styles.bookmarkBtn}>
-          <BookOutlined style={{ fontSize: 30 }} />
-        </Button>
+        <div className={styles.button_container}>
+          <Button className={styles.recipe_user}>
+            <UserOutlined className={styles.icons} />
+          </Button>
+        </div>
+        <div className={styles.button_container}>
+          <Button className={styles.bookmarkBtn}>
+            <BookOutlined className={styles.icons} />
+          </Button>
+        </div>
       </div>
 
       {/* render ingredients */}

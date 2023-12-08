@@ -25,7 +25,7 @@
   color: #615551;
   line-height: 1.6;
   font-size: 14px;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -47,9 +47,14 @@
   margin-top: 10px;
 }
 
+.image {
+  width: 400px;
+  height: 256px;
+}
+
 .recipe_detail {
   align-items: center;
-  padding: 2.5rem 8rem 3.5rem;
+  padding: 2.5rem 7rem 3.5rem;
   display: flex;
 }
 
@@ -235,4 +240,52 @@ p {
   transition: all 0.2s;
   display: flex;
   margin-bottom: 20px;
+}
+
+.icons {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .recipe_ingredients {
+    padding: 1rem; /* 调整为适当的值，或者根据需要完全移除 padding */
+    width: 100%;
+  }
+  .recipe_ingredient_list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem 2rem;
+  }
+  .image {
+    width: 250px;
+    height: 126px;
+  }
+  .recipe_detail {
+    margin-top: 3px;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    place-content: center;
+  }
+  .recipe_info {
+    font-size: 14px;
+  }
+  .button_container {
+    display: grid;
+    place-content: center;
+  }
+  .button_container:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  .recipe_user {
+    margin: 0;
+  }
+  .recipe_user,
+  .bookmarkBtn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 20px;
+  }
+  .icons {
+    font-size: 20px;
+  }
 }
