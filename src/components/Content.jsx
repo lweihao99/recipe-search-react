@@ -77,8 +77,6 @@ function Content({ data, updateServings }) {
           <Button className={styles.recipe_user}>
             <UserOutlined className={styles.icons} />
           </Button>
-        </div>
-        <div className={styles.button_container}>
           <Button className={styles.bookmarkBtn}>
             <BookOutlined className={styles.icons} />
           </Button>
