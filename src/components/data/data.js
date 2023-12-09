@@ -76,4 +76,22 @@ const updateServings = function (newServings) {
   }
 };
 
-export { searchRecipe, createRecipeObject, getRecipe, state, updateServings };
+// 书签
+const recipeBookmarked = (newRecipe) => {
+  if (newRecipe.bookmark) {
+    state.bookmarks.push(newRecipe);
+  } else {
+    state.bookmarks = state.bookmarks.filter(
+      (recipe) => recipe.id !== newRecipe.id
+    );
+  }
+};
+
+export {
+  searchRecipe,
+  createRecipeObject,
+  getRecipe,
+  state,
+  updateServings,
+  recipeBookmarked,
+};
