@@ -102,7 +102,6 @@ function Content({ data, updateServings, recipeBookmarked }) {
             <Button
               className={styles.bookmarkBtn}
               onClick={() => {
-                message.success("this is bookmark");
                 recipeBookmark(data, false);
               }}
             >
@@ -112,7 +111,6 @@ function Content({ data, updateServings, recipeBookmarked }) {
             <Button
               className={styles.bookmarkBtn}
               onClick={() => {
-                message.success("this is bookmark");
                 recipeBookmark(data, true);
               }}
             >

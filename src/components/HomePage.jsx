@@ -83,6 +83,12 @@ function HomePage() {
 
   // 书签控制
   const handleRecipeBookmarked = (newRecipe) => {
+    if (newRecipe.bookmark) {
+      message.success("Bookmarked");
+    } else {
+      message.success("Unbookmarked");
+    }
+
     setData(newRecipe);
   };
 
