@@ -10,11 +10,20 @@ import {
   UsergroupAddOutlined,
   PlusCircleOutlined,
   MinusCircleOutlined,
+  BookFilled,
 } from "@ant-design/icons";
 
 import { Image, Button, Space, message } from "antd";
 
-function Content({ data, updateServings }) {
+function Content({ data, updateServings, recipeBookmarked }) {
+  const recipeBookmark = (value, isBookmarked) => {
+    if (value.id === data.id) {
+      const newRecipe = { ...value, bookmark: isBookmarked };
+
+      recipeBookmarked(newRecipe);
+    }
+  };
+
   return (
     <div className={styles.content}>
       {/* figure */}
@@ -68,6 +77,7 @@ function Content({ data, updateServings }) {
                     message.warning("You can't serving less than 1 person");
                     return;
                   }
+
                   updateServings(data.servings - 1);
                 }}
               >
@@ -77,13 +87,39 @@ function Content({ data, updateServings }) {
           </div>
         </Space>
 
+        {/* bookmark and user recipe */}
         <div className={styles.button_container}>
-          <Button className={styles.recipe_user}>
+          <Button
+            className={styles.recipe_user}
+            onClick={() => {
+              message.success("this is user");
+            }}
+          >
             <UserOutlined className={styles.icons} />
           </Button>
-          <Button className={styles.bookmarkBtn}>
-            <BookOutlined className={styles.icons} />
-          </Button>
+
+          {data.bookmark ? (
+            <Button
+              className={styles.bookmarkBtn}
+              onClick={() => {
+                message.success("this is bookmark");
+                recipeBookmark(data, false);
+              }}
+            >
+              <BookFilled className={styles.icons} />
+            </Button>
+          ) : (
+            <Button
+              className={styles.bookmarkBtn}
+              onClick={() => {
+                message.success("this is bookmark");
+                recipeBookmark(data, true);
+              }}
+            >
+              {/* not bookmarked */}
+              <BookOutlined className={styles.icons} />
+            </Button>
+          )}
         </div>
       </div>
 

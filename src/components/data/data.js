@@ -6,8 +6,10 @@ const state = {
   search: {
     results: [],
   },
+  bookmarks: [],
 };
 
+// 转化数据对象样式
 const createRecipeObject = (recipe) => {
   return {
     id: recipe.id,
@@ -27,6 +29,7 @@ const getRecipe = async (id) => {
   state.recipe = createRecipeObject(recipe);
 };
 
+// 根据关键字搜索食谱
 const searchRecipe = async (query) => {
   const data = await search(query);
 
@@ -51,6 +54,7 @@ const searchRecipe = async (query) => {
   }
 };
 
+// 更新食谱材料份数
 const updateServings = function (newServings) {
   try {
     const updatedRecipe = { ...state.recipe };

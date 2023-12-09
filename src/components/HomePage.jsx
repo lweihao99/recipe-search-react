@@ -52,7 +52,7 @@ function HomePage() {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  // search button
+  // 搜索按钮
   const handleSearch = async (values) => {
     if (values === "") {
       return;
@@ -64,6 +64,7 @@ function HomePage() {
     setSearchValue(""); // initial value
   };
 
+  // 获取食谱数据
   const handleRecipeId = async (id) => {
     await getRecipe(id);
     const data = state.recipe;
@@ -72,11 +73,17 @@ function HomePage() {
     setData(data);
   };
 
+  // 服务人数控制
   const handleUpdateServings = (newServings) => {
     const newRecipe = updateServings(newServings);
     if (!newRecipe) return;
 
     setData(newRecipe); // react特性: 如果只是对原对象进行变化不会进行检测然后重新渲染，只有赋予了新的对象才会
+  };
+
+  // 书签控制
+  const handleRecipeBookmarked = (newRecipe) => {
+    setData(newRecipe);
   };
 
   return (
@@ -164,6 +171,7 @@ function HomePage() {
                   key={data.id}
                   data={data}
                   updateServings={handleUpdateServings}
+                  recipeBookmarked={handleRecipeBookmarked}
                 ></Content>
               )}
             </div>
