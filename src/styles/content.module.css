@@ -52,7 +52,8 @@
 
 .image {
   width: 400px;
-  height: 256px;
+  /* height: 256px; */
+  text-align: center;
 }
 
 .recipe_detail {
@@ -264,7 +265,7 @@ p {
   }
   .image {
     width: 250px;
-    height: 126px;
+    /* height: 126px; */
   }
   .recipe_detail {
     margin-top: 3px;
