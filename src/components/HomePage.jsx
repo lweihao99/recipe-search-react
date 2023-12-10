@@ -23,9 +23,10 @@ import styles from "../styles/layout.module.css";
 import Content from "./Content";
 import { getRecipeById } from "./Search";
 import { render } from "react-dom";
-import { getRecipe, searchRecipe, state } from "./data/data";
+import { getRecipe, renderBookmark, searchRecipe, state } from "./data/data";
 import Sidebar from "./Sidebar";
-import { updateServings } from "./data/data";
+import { updateServings, recipeBookmarked } from "./data/data";
+import BookmarkWindow from "./BookmarkWindow";
 
 const { Header, Content: AntdContent, Footer, Sider } = Layout;
 const { Search } = Input;
@@ -40,6 +41,7 @@ const USER_ITEMS = [
     label: "Recipe Bookmark",
     key: "2",
     icon: <FormOutlined />,
+    children: [],
   },
 ];
 
@@ -48,6 +50,8 @@ function HomePage() {
   const [searchValue, setSearchValue] = useState(""); // 搜索框初始化
   // const [query, setQuery] = useState("");
   const [data, setData] = useState({});
+  const [bookmarkedRecipe, setBookmarkedRecipe] = useState([]);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -88,8 +92,19 @@ function HomePage() {
     } else {
       message.success("Unbookmarked");
     }
-
+    recipeBookmarked(newRecipe);
+    bookmarkWindow();
     setData(newRecipe);
+  };
+
+  // 更新书签食谱数据
+  const bookmarkWindow = () => {
+    const getData = renderBookmark();
+    console.log(
+      "🚀 ~ file: HomePage.jsx:109 ~ bookmarkWindow ~ getData:",
+      getData
+    );
+    setBookmarkedRecipe(getData);
   };
 
   return (
@@ -103,10 +118,31 @@ function HomePage() {
           className={styles.logo}
         ></Image>
         Recipe Search System
-        {/* 左上小菜单栏 */}
+        {/* 右上小菜单栏 */}
         <span className={styles.user}>
-          <Dropdown menu={{ items: USER_ITEMS }}>
-            <a onClick={(e) => e.preventDefault()}>
+          <Dropdown
+            menu={{
+              items: USER_ITEMS.map((item, index) =>
+                item.label === "Recipe Bookmark"
+                  ? {
+                      ...item,
+                      children: bookmarkedRecipe.map((recipe, index) => ({
+                        label: (
+                          // 将所有书签食谱依次渲染
+                          <BookmarkWindow
+                            key={recipe.id} // 使用 recipe 的唯一标识作为 key
+                            data={recipe}
+                          />
+                        ),
+                        key: `${index}-${item.key}`, // 使用组合键确保唯一性
+                      })),
+                    }
+                  : item
+              ),
+            }}
+            autoAdjustOverflow={true}
+          >
+            <a onClick={(e) => console.log("profile")}>
               <Space>
                 Profile
                 <DownOutlined />
@@ -115,6 +151,7 @@ function HomePage() {
           </Dropdown>
         </span>
       </Header>
+
       <Layout
         style={{
           minHeight: "100vh",

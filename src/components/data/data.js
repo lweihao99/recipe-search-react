@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getRecipeById, search } from "../Search";
 import { message } from "antd";
 
@@ -87,6 +88,11 @@ const recipeBookmarked = (newRecipe) => {
   }
 };
 
+// 书签窗口渲染
+const renderBookmark = () => {
+  return state.bookmarks;
+};
+
 export {
   searchRecipe,
   createRecipeObject,
@@ -94,4 +100,5 @@ export {
   state,
   updateServings,
   recipeBookmarked,
+  renderBookmark,
 };

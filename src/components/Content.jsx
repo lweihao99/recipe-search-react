@@ -92,7 +92,7 @@ function Content({ data, updateServings, recipeBookmarked }) {
           <Button
             className={styles.recipe_user}
             onClick={() => {
-              message.success("this is user");
+              message.warning("No function, 还没有功能。");
             }}
           >
             <UserOutlined className={styles.icons} />
