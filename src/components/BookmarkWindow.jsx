@@ -4,11 +4,12 @@ import styles from "../styles/bookmark.module.css";
 import { Avatar, List, Pagination } from "antd";
 import { Link } from "react-router-dom";
 
-function BookmarkWindow({ data }) {
+function BookmarkWindow({ data, onData }) {
   // const data = state.bookmarks;
 
   const handleItemClick = (id) => {
-    console.log(id);
+    // todo 点击书签窗口的时候加载相应数据
+    onData(id);
   };
 
   return (

@@ -100,10 +100,7 @@ function HomePage() {
   // 更新书签食谱数据
   const bookmarkWindow = () => {
     const getData = renderBookmark();
-    console.log(
-      "🚀 ~ file: HomePage.jsx:109 ~ bookmarkWindow ~ getData:",
-      getData
-    );
+
     setBookmarkedRecipe(getData);
   };
 
@@ -132,6 +129,7 @@ function HomePage() {
                           <BookmarkWindow
                             key={recipe.id} // 使用 recipe 的唯一标识作为 key
                             data={recipe}
+                            onData={handleRecipeId}
                           />
                         ),
                         key: `${index}-${item.key}`, // 使用组合键确保唯一性
@@ -142,7 +140,7 @@ function HomePage() {
             }}
             autoAdjustOverflow={true}
           >
-            <a onClick={(e) => console.log("profile")}>
+            <a>
               <Space>
                 Profile
                 <DownOutlined />
