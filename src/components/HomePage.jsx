@@ -143,7 +143,7 @@ function HomePage() {
     <Layout>
       <Header className={styles.header}>
         <Image
-          src="/src/assets/cooking.png"
+          src="https://icons8.com/icon/41086/salt-bae"
           alt="logo"
           width={50}
           height={50}
