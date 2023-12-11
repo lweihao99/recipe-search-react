@@ -9,8 +9,8 @@ function BookmarkWindow({ data, onData }) {
 
   // todo 书签添加到本地存储空间
 
-  const handleItemClick = (id) => {
-    onData(id);
+  const handleItemClick = (item) => {
+    onData(item);
   };
 
   return (
@@ -23,7 +23,7 @@ function BookmarkWindow({ data, onData }) {
             className={styles.list}
             onClick={(e) => {
               e.preventDefault();
-              handleItemClick(item.id);
+              handleItemClick(item);
             }}
           >
             <List.Item.Meta

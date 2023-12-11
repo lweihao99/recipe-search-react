@@ -85,9 +85,8 @@ function HomePage() {
   };
 
   // 获取食谱数据
-  const handleRecipeId = async (id) => {
-    await getRecipe(id);
-    const data = state.recipe;
+  const handleRecipeId = async (item) => {
+    const data = item;
     console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
 
     setData(data);
