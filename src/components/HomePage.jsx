@@ -68,7 +68,7 @@ function HomePage() {
   useEffect(() => {
     try {
       const intialValue = init();
-      if (!intialValue) throw new Error("Failed to get initial data");
+      if (!intialValue) throw new Error("No local recipes bookmarked");
       setBookmarkedRecipe(intialValue);
     } catch (error) {
       message.warning(error.message);
@@ -133,6 +133,7 @@ function HomePage() {
   const handleClearButton = () => {
     clearBookmarks();
     setBookmarkedRecipe([]);
+    setData({});
   };
 
   return (
