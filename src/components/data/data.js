@@ -103,7 +103,8 @@ const persistBookmark = () => {
 
 // clear local storage
 function clearBookmarks() {
-  localStorage.clear("bookmarks");
+  state.bookmarks = [];
+  localStorage.removeItem("bookmarks");
 }
 
 // 获取初始化食谱数据
