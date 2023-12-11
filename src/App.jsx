@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import Login from "./components/login";
+import Login from "./components/Login.jsx";
 import HomePage from "./components/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

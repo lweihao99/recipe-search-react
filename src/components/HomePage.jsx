@@ -1,37 +1,24 @@
 import React, { useEffect, useState } from "react";
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-  DownOutlined,
-  FormOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, DownOutlined, FormOutlined } from "@ant-design/icons";
 import {
   Layout,
-  Menu,
   theme,
   Input,
   Dropdown,
   Space,
   Image,
-  Pagination,
   message,
   Button,
   Modal,
 } from "antd";
 import styles from "../styles/layout.module.css";
 import Content from "./Content";
-import { getRecipeById } from "./Search";
-import { render } from "react-dom";
 import {
   clearBookmarks,
   getRecipe,
   init,
   renderBookmark,
   searchRecipe,
-  state,
 } from "./data/data";
 import Sidebar from "./Sidebar";
 import { updateServings, recipeBookmarked } from "./data/data";
@@ -78,9 +65,9 @@ function HomePage() {
   }, []);
 
   // modal option
-  const showModal = () => {
-    setOpen(true);
-  };
+  // const showModal = () => {
+  //   setOpen(true);
+  // };
   const handleOk = () => {
     setOpen(false);
   };
@@ -110,12 +97,12 @@ function HomePage() {
   };
 
   // 获取食谱数据
-  const handleRecipeItem = async (item) => {
-    const data = item;
-    console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
+  // const handleRecipeItem = async (item) => {
+  //   const data = item;
+  //   console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
 
-    setData(data);
-  };
+  //   setData(data);
+  // };
 
   // 服务人数控制
   const handleUpdateServings = (newServings) => {

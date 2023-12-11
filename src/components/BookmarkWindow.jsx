@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { state, renderBookmark } from "./data/data";
+import React from "react";
 import styles from "../styles/bookmark.module.css";
-import { Avatar, List, Pagination } from "antd";
+import { Avatar, List } from "antd";
 import { Link } from "react-router-dom";
 
 function BookmarkWindow({ data, onData }) {
