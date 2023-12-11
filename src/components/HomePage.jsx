@@ -233,10 +233,30 @@ function HomePage() {
               onChange={(e) => setSearchValue(e.target.value)}
               onSearch={handleSearch}
             />
-            <Button onClick={showModal} style={{ float: "right", margin: 15 }}>
+            <Button
+              onClick={() => {
+                Modal.confirm({
+                  open: { open },
+                  title: "Clear",
+                  content: "Are you sure to clear the local storage?",
+                  onOk: () => {
+                    handleClearButton();
+                    handleOk();
+                  },
+                  onCancel: { handleCancel },
+                  footer: (_, { OkBtn, CancelBtn }) => (
+                    <>
+                      <CancelBtn />
+                      <OkBtn />
+                    </>
+                  ),
+                });
+              }}
+              style={{ float: "right", margin: 15 }}
+            >
               Clear
             </Button>
-            <Modal
+            {/* <Modal
               open={open}
               title="Clear"
               onOk={() => {
@@ -251,8 +271,8 @@ function HomePage() {
                 </>
               )}
             >
-              <p>Are you sure?!</p>
-            </Modal>
+              <p>Are you sure to clear local storage?</p>
+            </Modal> */}
             {/* <Menu></Menu> */}
           </Header>
 
