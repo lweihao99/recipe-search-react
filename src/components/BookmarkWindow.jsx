@@ -7,8 +7,9 @@ import { Link } from "react-router-dom";
 function BookmarkWindow({ data, onData }) {
   // const data = state.bookmarks;
 
+  // todo 书签添加到本地存储空间
+
   const handleItemClick = (id) => {
-    // todo 点击书签窗口的时候加载相应数据
     onData(id);
   };
 

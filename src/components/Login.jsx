@@ -2,10 +2,15 @@
 import React from "react";
 import styles from "../styles/login.module.css";
 import { Form, Button, Input } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const handleLogin = (values) => {
-    console.log("login", values);
+    if (values.name && values.password === "admin") {
+      navigate("/home");
+    }
   };
 
   return (
