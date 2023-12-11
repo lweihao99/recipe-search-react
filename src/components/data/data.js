@@ -74,7 +74,7 @@ const updateServings = function (newServings) {
 
     return updatedRecipe;
   } catch (error) {
-    message.error(error.message);
+    message.warning(error.message);
   }
 };
 
