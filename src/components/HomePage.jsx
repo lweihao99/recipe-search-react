@@ -19,6 +19,7 @@ import {
   Pagination,
   message,
   Button,
+  Modal,
 } from "antd";
 import styles from "../styles/layout.module.css";
 import Content from "./Content";
@@ -59,6 +60,7 @@ function HomePage() {
   // const [query, setQuery] = useState("");
   const [data, setData] = useState({});
   const [bookmarkedRecipe, setBookmarkedRecipe] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const {
     token: { colorBgContainer },
@@ -74,6 +76,18 @@ function HomePage() {
       message.warning(error.message);
     }
   }, []);
+
+  // modal option
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = () => {
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
 
   // 搜索按钮
   const handleSearch = async (values) => {
@@ -131,6 +145,7 @@ function HomePage() {
 
   // clear local storage 数据
   const handleClearButton = () => {
+    message.success("Clear");
     clearBookmarks();
     setBookmarkedRecipe([]);
     setData({});
@@ -218,12 +233,26 @@ function HomePage() {
               onChange={(e) => setSearchValue(e.target.value)}
               onSearch={handleSearch}
             />
-            <Button
-              onClick={handleClearButton}
-              style={{ float: "right", margin: 15 }}
-            >
+            <Button onClick={showModal} style={{ float: "right", margin: 15 }}>
               Clear
             </Button>
+            <Modal
+              open={open}
+              title="Clear"
+              onOk={() => {
+                handleClearButton();
+                handleOk();
+              }}
+              onCancel={handleCancel}
+              footer={(_, { OkBtn, CancelBtn }) => (
+                <>
+                  <CancelBtn />
+                  <OkBtn />
+                </>
+              )}
+            >
+              <p>Are you sure?!</p>
+            </Modal>
             {/* <Menu></Menu> */}
           </Header>
 
