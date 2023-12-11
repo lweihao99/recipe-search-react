@@ -11,8 +11,9 @@ const state = {
 };
 
 // 转化数据对象样式
-const createRecipeObject = (recipe) => {
+const createRecipeObject = (recipe, isBookmarked) => {
   return {
+    bookmark: isBookmarked,
     id: recipe.id,
     title: recipe.title,
     publisher: recipe.publisher,
@@ -25,9 +26,9 @@ const createRecipeObject = (recipe) => {
   };
 };
 
-const getRecipe = async (id) => {
+const getRecipe = async (id, isBookmarked) => {
   const recipe = await getRecipeById(id);
-  state.recipe = createRecipeObject(recipe);
+  state.recipe = createRecipeObject(recipe, isBookmarked);
   return state.recipe;
 };
 

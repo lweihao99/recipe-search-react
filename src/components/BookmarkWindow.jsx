@@ -7,10 +7,8 @@ import { Link } from "react-router-dom";
 function BookmarkWindow({ data, onData }) {
   // const data = state.bookmarks;
 
-  // todo 书签添加到本地存储空间
-
-  const handleItemClick = (item) => {
-    onData(item);
+  const handleItemClick = (id, isBookmarked) => {
+    onData(id, isBookmarked);
   };
 
   return (
@@ -23,7 +21,7 @@ function BookmarkWindow({ data, onData }) {
             className={styles.list}
             onClick={(e) => {
               e.preventDefault();
-              handleItemClick(item);
+              handleItemClick(item.id, true);
             }}
           >
             <List.Item.Meta

@@ -101,8 +101,9 @@ function HomePage() {
     setSearchValue(""); // initial value
   };
 
-  const handleRecipeId = async (id) => {
-    const data = await getRecipe(id);
+  // 根据id获取食谱
+  const handleRecipeId = async (id, isBookmarked = false) => {
+    const data = await getRecipe(id, isBookmarked);
     console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
 
     setData(data);
@@ -176,7 +177,7 @@ function HomePage() {
                           <BookmarkWindow
                             key={recipe.id} // 使用 recipe 的唯一标识作为 key
                             data={recipe}
-                            onData={handleRecipeItem}
+                            onData={handleRecipeId}
                           />
                         ),
                         key: `${index}-${item.key}`, // 使用组合键确保唯一性
