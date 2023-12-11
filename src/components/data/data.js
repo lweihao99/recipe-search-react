@@ -86,11 +86,27 @@ const recipeBookmarked = (newRecipe) => {
       (recipe) => recipe.id !== newRecipe.id
     );
   }
+
+  persistBookmark(); // 更新本地存储
 };
 
 // 书签窗口渲染
 const renderBookmark = () => {
   return state.bookmarks;
+};
+
+// local storage
+const persistBookmark = () => {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+
+// 获取初始化食谱数据
+const init = () => {
+  const item = localStorage.getItem("bookmarks");
+  if (item) {
+    state.bookmarks = JSON.parse(item);
+    return state.bookmarks;
+  }
 };
 
 export {
@@ -101,4 +117,5 @@ export {
   updateServings,
   recipeBookmarked,
   renderBookmark,
+  init,
 };

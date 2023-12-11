@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -23,7 +23,13 @@ import styles from "../styles/layout.module.css";
 import Content from "./Content";
 import { getRecipeById } from "./Search";
 import { render } from "react-dom";
-import { getRecipe, renderBookmark, searchRecipe, state } from "./data/data";
+import {
+  getRecipe,
+  init,
+  renderBookmark,
+  searchRecipe,
+  state,
+} from "./data/data";
 import Sidebar from "./Sidebar";
 import { updateServings, recipeBookmarked } from "./data/data";
 import BookmarkWindow from "./BookmarkWindow";
@@ -55,6 +61,16 @@ function HomePage() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  // 获取初始数据并渲染初始数据
+  useEffect(() => {
+    const intialValue = init();
+    console.log(
+      "🚀 ~ file: HomePage.jsx:68 ~ useEffect ~ intialValue:",
+      intialValue
+    );
+    setBookmarkedRecipe(intialValue);
+  }, []);
 
   // 搜索按钮
   const handleSearch = async (values) => {
