@@ -28,6 +28,7 @@ const createRecipeObject = (recipe) => {
 const getRecipe = async (id) => {
   const recipe = await getRecipeById(id);
   state.recipe = createRecipeObject(recipe);
+  return state.recipe;
 };
 
 // 根据关键字搜索食谱
@@ -95,10 +96,15 @@ const renderBookmark = () => {
   return state.bookmarks;
 };
 
-// local storage
+// add local storage
 const persistBookmark = () => {
   localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
 };
+
+// clear local storage
+function clearBookmarks() {
+  localStorage.clear("bookmarks");
+}
 
 // 获取初始化食谱数据
 const init = () => {
@@ -118,4 +124,5 @@ export {
   recipeBookmarked,
   renderBookmark,
   init,
+  clearBookmarks,
 };

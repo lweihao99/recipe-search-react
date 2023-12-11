@@ -18,12 +18,14 @@ import {
   Image,
   Pagination,
   message,
+  Button,
 } from "antd";
 import styles from "../styles/layout.module.css";
 import Content from "./Content";
 import { getRecipeById } from "./Search";
 import { render } from "react-dom";
 import {
+  clearBookmarks,
   getRecipe,
   init,
   renderBookmark,
@@ -64,12 +66,13 @@ function HomePage() {
 
   // 获取初始数据并渲染初始数据
   useEffect(() => {
-    const intialValue = init();
-    console.log(
-      "🚀 ~ file: HomePage.jsx:68 ~ useEffect ~ intialValue:",
-      intialValue
-    );
-    setBookmarkedRecipe(intialValue);
+    try {
+      const intialValue = init();
+      if (!intialValue) throw new Error("Failed to get initial data");
+      setBookmarkedRecipe(intialValue);
+    } catch (error) {
+      message.warning(error.message);
+    }
   }, []);
 
   // 搜索按钮
@@ -84,8 +87,15 @@ function HomePage() {
     setSearchValue(""); // initial value
   };
 
+  const handleRecipeId = async (id) => {
+    const data = await getRecipe(id);
+    console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
+
+    setData(data);
+  };
+
   // 获取食谱数据
-  const handleRecipeId = async (item) => {
+  const handleRecipeItem = async (item) => {
     const data = item;
     console.log("🚀 ~ file: HomePage.jsx:69 ~ handleRecipeId ~ data:", data);
 
@@ -119,6 +129,12 @@ function HomePage() {
     setBookmarkedRecipe(getData);
   };
 
+  // clear local storage 数据
+  const handleClearButton = () => {
+    clearBookmarks();
+    setBookmarkedRecipe([]);
+  };
+
   return (
     <Layout>
       <Header className={styles.header}>
@@ -144,7 +160,7 @@ function HomePage() {
                           <BookmarkWindow
                             key={recipe.id} // 使用 recipe 的唯一标识作为 key
                             data={recipe}
-                            onData={handleRecipeId}
+                            onData={handleRecipeItem}
                           />
                         ),
                         key: `${index}-${item.key}`, // 使用组合键确保唯一性
@@ -201,8 +217,15 @@ function HomePage() {
               onChange={(e) => setSearchValue(e.target.value)}
               onSearch={handleSearch}
             />
-            <Menu></Menu>
+            <Button
+              onClick={handleClearButton}
+              style={{ float: "right", margin: 15 }}
+            >
+              Clear
+            </Button>
+            {/* <Menu></Menu> */}
           </Header>
+
           {/* content */}
           <AntdContent
             style={{
