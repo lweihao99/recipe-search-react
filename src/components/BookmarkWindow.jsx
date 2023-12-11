@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 function BookmarkWindow({ data, onData }) {
   // const data = state.bookmarks;
 
+  // todo 在通过书签页面跳转的食谱页面servings不会改变，或者改变之后会恢复原样。
+
   const handleItemClick = (id, isBookmarked) => {
     onData(id, isBookmarked);
   };

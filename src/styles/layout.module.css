@@ -9,6 +9,7 @@
   margin: 15px;
   margin-left: 20px;
   float: left;
+  overflow: hidden;
 }
 
 .header {
@@ -22,4 +23,8 @@
 
 .logo {
   margin-right: 10px;
+}
+.second_header {
+  display: flex;
+  justify-content: space-between;
 }

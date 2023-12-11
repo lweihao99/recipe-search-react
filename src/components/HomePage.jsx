@@ -211,6 +211,7 @@ function HomePage() {
               padding: 0,
               background: colorBgContainer,
             }}
+            className={styles.second_header}
           >
             <Search
               className={styles.search}
@@ -240,7 +241,8 @@ function HomePage() {
                   ),
                 });
               }}
-              style={{ float: "right", margin: 15 }}
+              style={{ margin: 15 }}
+              className={styles.clearButton}
             >
               Clear
             </Button>
