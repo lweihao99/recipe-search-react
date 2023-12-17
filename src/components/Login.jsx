@@ -21,7 +21,7 @@ function Login() {
         <Form.Item
           label="账号"
           name="name"
-          rules={[{ required: true, message: "Please enter your username" }]}
+          rules={[{ required: true, message: "Enter admin" }]}
         >
           <Input placeholder="Please enter username"></Input>
         </Form.Item>
@@ -30,7 +30,7 @@ function Login() {
         <Form.Item
           label="密码"
           name="password"
-          rules={[{ required: true, message: "Please enter your password" }]}
+          rules={[{ required: true, message: "Enter admin" }]}
         >
           <Input.Password placeholder="Please enter password"></Input.Password>
         </Form.Item>
