@@ -10,9 +10,24 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const userLogin = (user, pass) => {
+    return axios({
+      method: "post",
+      url: "http://127.0.0.1:3001/api/recipe/login",
+      data: {
+        username: user,
+        password: pass,
+      },
+    });
+  };
+
   const handleLogin = async () => {
     try {
-      if (username === "admin " && password === "admin") navigate("/home");
+      const response = await userLogin(username, password);
+      console.log(response);
+      if (!response.data.status === "success") throw new Error("Login Failed");
+
+      navigate("/home");
     } catch (error) {
       console.error("Login Failed", error);
     }
@@ -26,10 +41,10 @@ function Login() {
         <Form.Item
           label="账号"
           name="name"
-          rules={[{ required: true, message: "Please enter your username" }]}
+          rules={[{ required: true, message: "Enter admin" }]}
         >
           <Input
-            placeholder="Please enter username"
+            placeholder="Enter admin"
             onChange={(e) => setUsername(e.target.value)}
           ></Input>
         </Form.Item>
