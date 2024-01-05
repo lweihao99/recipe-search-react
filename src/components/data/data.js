@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { getRecipeById, search } from "../Search";
 import { message } from "antd";
 
+// todo restructure with reducer later
 const state = {
   recipe: {},
   search: {
