@@ -61,6 +61,29 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+    const { username, password } = req.query; // 获取查询数据
+    const user = await User.findOne({ username, password }); // 根据查询字符串进行数据库查询
+    // console.log(user);
+
+    if (!user) throw new Error("用户不存在");
+
+    res.status(200).json({
+      status: "success",
+      requestAt: req.requestTime,
+      data: {
+        user,
+      },
+    });
+  } catch (error) {
+    res.status(401).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
+
 const getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -84,5 +107,6 @@ const getAllUsers = async (req, res) => {
 router.route("/login").post(login);
 
 router.route("/").get(getAllUsers).post(createUser);
+router.route("/user").get(getUser);
 
 module.exports = router;
