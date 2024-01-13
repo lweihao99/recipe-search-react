@@ -69,9 +69,12 @@ const getUser = async (req, res) => {
 
     if (!user) throw new Error("用户不存在");
 
+    const token = signToken(user._id);
+
     res.status(200).json({
       status: "success",
       requestAt: req.requestTime,
+      token,
       data: {
         user,
       },
